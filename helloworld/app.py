@@ -62,3 +62,8 @@ def s3objects(key):
             return json.loads(response['Body'].read())
         except ClientError as e:
             raise NotFoundError(key)
+
+
+@app.route('/authenticated', methods=['GET'], api_key_required=True)
+def authenticated():
+    return {"secure": True}
